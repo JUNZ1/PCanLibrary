@@ -15,7 +15,9 @@ private:
     HANDLE m_handle;
     DWORD m_status;
     void writeStatus();
+
 public:
+    HANDLE getHandleNumber(){return m_handle;}
     canManager(canManager&)= delete;
     canManager(canManager&&)= delete;
     static canManager* instance();
