@@ -20,7 +20,8 @@ void canMsgBase::start()
 bool canMsgBase::stop()
 {
     stopper=false;
-    while(stopResult->wait_for(std::chrono::seconds(1))!=std::future_status::ready);
+    while(stopResult->wait_for(std::chrono::seconds(1))!=std::future_status::ready)
+        std::this_thread::yield();
 
 
     return this->stopResult->get();
