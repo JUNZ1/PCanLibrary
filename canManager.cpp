@@ -10,14 +10,19 @@ canManager *canManager::s_instance = 0;
 canManager* canManager::instance()
 {
     if (!s_instance)
+    {
         s_instance = new canManager;
+    }
+
     return s_instance;
 }
 
 void canManager::initCAN()
 {
+    registerReceiver();
     m_status=CAN_Init(m_handle, CAN_BAUD_250K, CAN_INIT_TYPE_EX);
     writeStatus();
+    allReceiver->start();
 
 }
 

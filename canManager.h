@@ -6,15 +6,17 @@
 #define CANMANAGER_CANMANAGER_H
 #include <iostream>
 #include <libpcan.h>
-
+#include "canRcvMsg.h"
 class canManager {
 private:
     static canManager* s_instance;
     canManager(){std::cout<<"Can Manager is Created"<<std::endl;};
+    ~canManager(){delete s_instance;delete allReceiver;}
     HANDLE m_handle;
     DWORD m_status;
     void writeStatus();
-
+    canRcvMsg* allReceiver;
+    void registerReceiver(){allReceiver=new canRcvMsg(100,m_handle);}
 public:
     HANDLE getHandleNumber(){return m_handle;}
     canManager(canManager&)= delete;
