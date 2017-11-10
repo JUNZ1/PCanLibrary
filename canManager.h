@@ -18,7 +18,6 @@ private:
     canRcvMsg* allReceiver;
     void registerReceiver(){allReceiver=new canRcvMsg(100,m_handle);}
 public:
-    HANDLE getHandleNumber(){return m_handle;}
     canManager(canManager&)= delete;
     canManager(canManager&&)= delete;
     static canManager* instance();
