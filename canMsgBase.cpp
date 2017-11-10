@@ -5,7 +5,7 @@
 #include <thread>
 #include "canMsgBase.h"
 #include <future>
-canMsgBase::canMsgBase(int milisec,DWORD msgAdress): stopper(true),stopped(false),m_msgAdress(msgAdress)
+canMsgBase::canMsgBase(int milisec): stopper(true),stopped(false)
 {
     ms=new std::chrono::milliseconds(milisec);
 }

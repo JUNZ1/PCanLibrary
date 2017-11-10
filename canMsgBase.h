@@ -13,7 +13,7 @@
 
 class canMsgBase {
 public:
-    canMsgBase(int,DWORD);
+    canMsgBase(int);
     virtual void start();
     bool stop();
     friend std::ostream& operator<<(std::ostream&, const canMsgBase&);

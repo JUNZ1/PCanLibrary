@@ -26,6 +26,18 @@ void canManager::initCAN()
 
 }
 
+
+std::ostream& operator<< (std::ostream& os, const TPCANMsg& obj) {
+    os << "ID:  " <<std::hex<<obj.ID;
+    return os;
+}
+
+void canManager::writeAllIncomingBuff()
+{
+    std::cout<<"\n\nPrint All Buffer"<<std::endl;
+    for(auto index:incomingBuffer)
+        std::cout<<index<<std::endl;
+}
 void canManager::writeStatus()
 {
     switch (m_status)

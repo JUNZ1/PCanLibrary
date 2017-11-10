@@ -5,16 +5,17 @@
 #ifndef CANMANAGER_CANRCVMSG_H
 #define CANMANAGER_CANRCVMSG_H
 #include "canMsgBase.h"
-
+#include <vector>
 
 class canRcvMsg: public canMsgBase {
 
 public:
-    canRcvMsg(int miliSeconds,HANDLE handleInput,DWORD msgAdress=0):canMsgBase(miliSeconds,msgAdress),m_handle(handleInput){}
+    canRcvMsg(int miliSeconds,HANDLE handleInput,std::vector<TPCANMsg>* linkArg):canMsgBase(miliSeconds),m_handle(handleInput),linkToincomingBuffer(linkArg){}
     virtual void start();
 
 private:
     HANDLE m_handle;
+    std::vector<TPCANMsg>* linkToincomingBuffer;
 };
 
 

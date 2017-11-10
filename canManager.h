@@ -6,6 +6,8 @@
 #define CANMANAGER_CANMANAGER_H
 #include <iostream>
 #include <libpcan.h>
+#include "pcan.h"
+#include <vector>
 #include "canRcvMsg.h"
 class canManager {
 private:
@@ -16,7 +18,9 @@ private:
     DWORD m_status;
     void writeStatus();
     canRcvMsg* allReceiver;
-    void registerReceiver(){allReceiver=new canRcvMsg(100,m_handle);}
+    void registerReceiver(){allReceiver=new canRcvMsg(100,m_handle,&incomingBuffer);}
+    std::vector<TPCANMsg> incomingBuffer;
+
 public:
     canManager(canManager&)= delete;
     canManager(canManager&&)= delete;
@@ -26,9 +30,10 @@ public:
     void closeCan(){CAN_Close(m_handle);writeStatus();}
     HANDLE getHandle(){return m_handle;}
     const int buffPacketLimit=300;
+    void writeAllIncomingBuff();
 };
 
-
+std::ostream& operator<<(std::ostream&, const TPCANMsg&);
 
 
 #endif //CANMANAGER_CANMANAGER_H
