@@ -4,7 +4,7 @@
 #include <thread>
 #include "canMsgBase.h"
 #include <future>
-canMsgBase::canMsgBase(int milisec): stopper(true),stopped(false)
+canMsgBase::canMsgBase(int milisec,DWORD msgAdress): stopper(true),stopped(false),m_msgAdress(msgAdress)
 {
     ms=new std::chrono::milliseconds(milisec);
 }
@@ -12,7 +12,7 @@ canMsgBase::canMsgBase(int milisec): stopper(true),stopped(false)
 void canMsgBase::start()
 {
     stopper=true;
-    auto runner=[this](){while (stopper) { msgDelay(); std::cout<<"Test"<<std::endl; };return true;};
+    auto runner=[this](){while (stopper) { msgDelay(); std::cout<<"canMsgBase Test For Timer is OK"<<std::endl; };return true;};
 
     stopResult= new std::future<bool>(std::async(std::launch::async,runner));
 }
