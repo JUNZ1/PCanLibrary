@@ -6,14 +6,15 @@
 #define CANMANAGER_CANRCVMSG_H
 #include "canMsgBase.h"
 
+
 class canRcvMsg: public canMsgBase {
 
 public:
-    canRcvMsg(int miliSeconds,DWORD msgAdress):canMsgBase(miliSeconds,msgAdress){}
+    canRcvMsg(int miliSeconds,DWORD msgAdress,HANDLE handleInput):canMsgBase(miliSeconds,msgAdress),m_handle(handleInput){}
     virtual void start();
 
 private:
-
+    HANDLE m_handle;
 };
 
 

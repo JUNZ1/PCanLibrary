@@ -9,7 +9,7 @@
 #include "pcan.h"
 #include <chrono>
 #include <future>
-#include "canManager.h"
+
 
 class canMsgBase {
 public:

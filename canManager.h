@@ -7,7 +7,6 @@
 #include <iostream>
 #include <libpcan.h>
 
-
 class canManager {
 private:
     static canManager* s_instance;

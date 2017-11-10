@@ -1,6 +1,6 @@
 #include <iostream>
+#include "canManager.h"
 #include "canRcvMsg.h"
-
 
 
 int main() {
@@ -12,7 +12,7 @@ int main() {
         canManager::instance()->initCAN();
 
         int duration=250;
-        canRcvMsg incoming(duration,0x0f);
+        canRcvMsg incoming(duration,0x0f,canManager::instance()->getHandle());
         incoming.start();
         std::chrono::milliseconds ms(duration);
         int say=0;

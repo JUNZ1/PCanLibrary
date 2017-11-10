@@ -3,7 +3,7 @@
 //
 
 #include "canManager.h"
-#include <pcan.h>
+
 canManager *canManager::s_instance = 0;
 
 
