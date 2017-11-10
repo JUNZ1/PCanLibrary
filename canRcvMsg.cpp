@@ -5,6 +5,8 @@
 #include "canRcvMsg.h"
 void canRcvMsg::start()
 {
-    msgDelay();
-    CAN_Read(canManager::instance()->getHandle(), &msg);
+    stopper=true;
+    auto runner=[this](){while (stopper) { msgDelay();CAN_Read(canManager::instance()->getHandle(), &msg);std::cout<<*this<<std::endl; };return true;};
+
+    stopResult= new std::future<bool>(std::async(std::launch::async,runner));
 }

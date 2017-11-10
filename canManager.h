@@ -21,11 +21,13 @@ public:
     canManager(canManager&)= delete;
     canManager(canManager&&)= delete;
     static canManager* instance();
-    void openCan(int number){m_handle=CAN_Open(HW_USB, number);if(m_handle<0) std::cout<<"Can Port Not Opened!!!"<<std::endl;};
+    void openCan(int number){m_handle=CAN_Open(HW_USB, number);if(m_handle==0) std::cout<<"Can Port Not Opened!!!"<<std::endl;};
     void initCAN();
     void closeCan(){CAN_Close(m_handle);writeStatus();}
     HANDLE getHandle(){return m_handle;}
 };
+
+
 
 
 #endif //CANMANAGER_CANMANAGER_H

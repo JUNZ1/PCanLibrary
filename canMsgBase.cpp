@@ -1,6 +1,7 @@
 //
 // Created by baran on 03.11.2017.
 //
+#include <iostream>
 #include <thread>
 #include "canMsgBase.h"
 #include <future>
@@ -25,4 +26,10 @@ bool canMsgBase::stop()
 
 
     return this->stopResult->get();
+}
+
+
+std::ostream& operator<< (std::ostream& os, const canMsgBase& obj) {
+    os << "ID:  " <<std::hex<<obj.msg.ID;
+    return os;
 }
