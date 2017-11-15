@@ -1,6 +1,7 @@
 #include <iostream>
 #include "canManager.h"
 #include "canRcvMsg.h"
+#include "incoming_Packet.h"
 
 
 void test2()
@@ -30,9 +31,14 @@ void test2()
 
 }
 
+void test3()
+{
+    incoming_Packet deneme(1,0x0f);
+}
+
 int main() {
 
-    test2();
 
+    test3();
     return 0;
 }

@@ -19,7 +19,7 @@ private:
     void writeStatus();
     canRcvMsg* allReceiver;
     void registerReceiver(){allReceiver=new canRcvMsg(100,m_handle,&incomingBuffer);}
-    std::vector<TPCANMsg> incomingBuffer;
+
 
 public:
     canManager(canManager&)= delete;
@@ -31,6 +31,7 @@ public:
     HANDLE getHandle(){return m_handle;}
     const int buffPacketLimit=300;
     void writeAllIncomingBuff();
+    std::vector<TPCANMsg> incomingBuffer;
 };
 
 std::ostream& operator<<(std::ostream&, const TPCANMsg&);
