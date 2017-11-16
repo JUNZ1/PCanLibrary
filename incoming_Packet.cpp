@@ -8,15 +8,17 @@
 bool incoming_Packet::found(WORD isThis,TPCANMsg equalToThat)
 {
     if(isThis==equalToThat.ID)
+    {
+        std::cout<<"Bulundu"<<std::endl;
         return true;
+    }
+
     else
+    {
+       // std::cout<<"Bulunmadi"<<std::endl;
         return false;
-}
+    }
 
-bool deneme(TPCANMsg)
-{
-
-    return true;
 }
 
 
@@ -24,8 +26,8 @@ incoming_Packet::incoming_Packet(int delayMs,WORD msgID) :canMsgBase(delayMs),id
 
 
 
-
-
+//(void(Foo::*)(int, int))
+//(bool(incoming_Packet::*)(WORD, TPCANMsgn))
 void incoming_Packet::start()
 {
 
@@ -35,10 +37,13 @@ void incoming_Packet::start()
     {
         while (stopper)
         {
-            auto findThis=std::bind(&incoming_Packet::found,idOfInterest,std::placeholders::_1);
-            auto deneme2=std::bind(deneme,std::placeholders::_1);
+            auto findThis=std::bind(&incoming_Packet::found,this,idOfInterest,std::placeholders::_1);
             msgDelay();
-            std::find_if(canManager::instance()->incomingBuffer.begin(),canManager::instance()->incomingBuffer.end(),deneme2);
+
+            std::vector<TPCANMsg>::iterator myIterator=std::find_if(canManager::instance()->incomingBuffer.begin(),canManager::instance()->incomingBuffer.end(),findThis);
+            if(myIterator!=canManager::instance()->incomingBuffer.end())
+            canManager::instance()->incomingBuffer.erase(myIterator);
+
         };
         return true;
     };

@@ -5,10 +5,12 @@
 #ifndef CANMANAGER_CANMANAGER_H
 #define CANMANAGER_CANMANAGER_H
 #include <iostream>
+#include <mutex>
+#include <vector>
 #include <libpcan.h>
 #include "pcan.h"
-#include <vector>
 #include "canRcvMsg.h"
+
 class canManager {
 private:
     static canManager* s_instance;
@@ -32,6 +34,7 @@ public:
     const int buffPacketLimit=300;
     void writeAllIncomingBuff();
     std::vector<TPCANMsg> incomingBuffer;
+    std::mutex myLocker;
 };
 
 std::ostream& operator<<(std::ostream&, const TPCANMsg&);
