@@ -20,7 +20,7 @@ private:
     DWORD m_status;
     void writeStatus();
     canRcvMsg* allReceiver;
-    void registerReceiver(){allReceiver=new canRcvMsg(100,m_handle,&incomingBuffer);}
+    void registerReceiver(){allReceiver=new canRcvMsg(50,m_handle,&incomingBuffer);}
 
 
 public:
@@ -29,7 +29,7 @@ public:
     static canManager* instance();
     void openCan(int number){m_handle=CAN_Open(HW_USB, number);if(m_handle==0) throw std::out_of_range ("can index is= out_of_range");};
     void initCAN();
-    void closeCan(){CAN_Close(m_handle);writeStatus();}
+    void closeCan(){CAN_Close(m_handle);writeStatus();allReceiver->stop();}
     HANDLE getHandle(){return m_handle;}
     const int buffPacketLimit=300;
     void writeAllIncomingBuff();

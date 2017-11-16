@@ -9,14 +9,16 @@
 #include "pcan.h"
 #include <chrono>
 #include <future>
+#include <mutex>
 
-
+static std::mutex myMutex;
 class canMsgBase {
 public:
     canMsgBase(int);
     virtual void start();
     bool stop();
     friend std::ostream& operator<<(std::ostream&, const canMsgBase&);
+
 protected: //ileride protected yapilacak inheritten sonra
     DWORD* m_handlerAddres= nullptr;
     TPCANMsg msg;

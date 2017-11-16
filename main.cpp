@@ -41,13 +41,12 @@ void test4()
 
     try
     {
-        incoming_Packet incomingHandler(100,0x152);
+        incoming_Packet incomingHandler(10,0x152);
         incomingHandler.start();
         canManager::instance()->openCan(1);
         canManager::instance()->initCAN();
 
-        int duration=100;
-        std::chrono::milliseconds ms(duration);
+        std::chrono::milliseconds ms(100);
         int say=0;
         while(say<30)
         {
