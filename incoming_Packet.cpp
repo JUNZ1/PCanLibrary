@@ -38,7 +38,7 @@ void incoming_Packet::start()
         while (stopper)
         {
             auto findThis=std::bind(&incoming_Packet::found,this,idOfInterest,std::placeholders::_1);
-            //msgDelay();
+            msgDelay();
             std::lock_guard<std::mutex> myLock(myMutex);
             std::vector<TPCANMsg>::iterator myIterator=std::find_if(canManager::instance()->incomingBuffer.begin(),canManager::instance()->incomingBuffer.end(),findThis);
             if(myIterator!=canManager::instance()->incomingBuffer.end())
