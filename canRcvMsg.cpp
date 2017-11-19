@@ -14,7 +14,7 @@ void canRcvMsg::start()
             CAN_Read(m_handle, &msg);
             std::cout<<"Push this-> "<<*this<<std::endl;
             std::lock_guard<std::mutex> myLock(myMutex);
-            linkToincomingBuffer->push_back(msg);
+            linkToContainer->storeMsg(msg);
         };
         return true;
     };

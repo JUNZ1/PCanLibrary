@@ -10,8 +10,8 @@
 #include <libpcan.h>
 #include "pcan.h"
 #include "canRcvMsg.h"
-
-class canManager {
+#include "packet_container.h"
+class canManager:packet_container {
 private:
     static canManager* s_instance;
     canManager(){std::cout<<"Can Manager is Created"<<std::endl;};
@@ -20,7 +20,7 @@ private:
     DWORD m_status;
     void writeStatus();
     canRcvMsg* allReceiver;
-    void registerReceiver(){allReceiver=new canRcvMsg(50,m_handle,&incomingBuffer);}
+    void registerReceiver(){allReceiver=new canRcvMsg(50,m_handle,this);}
 
 
 public:
