@@ -66,21 +66,10 @@ void test4()
 
 }
 
-void test5()
-{
-    std::map<int,char> deneme;
-    deneme.insert(std::make_pair(4,'k'));
-
-    std::cout<<deneme[4]<<std::endl;
-    deneme[3]='s';
 
 
-    std::cout<<deneme[3]<<std::endl;
-    std::cout<<deneme[1]<<std::endl;
-}
+
 int main() {
 
-
-    test5();
     return 0;
 }

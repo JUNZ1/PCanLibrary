@@ -16,9 +16,18 @@ TPCANMsg packet_container::getMsgById(DWORD seekThis)
 
     if(registeredMsg.find(seekThis)!=registeredMsg.end())
     {
-        tempMsg=storedMessages[seekThis].at(0);
-        storedMessages[seekThis].pop_front();
+        if(storedMessages[seekThis].size()!=0)
+        {
+            tempMsg=storedMessages[seekThis].at(0);
+            storedMessages[seekThis].pop_front();
+            return tempMsg;
+        }
+        else
+            throw std::logic_error ("No New Message !!!");
+    }
+    else
+    {
+        throw std::logic_error ("This ID is not Registered!!!");
     }
 
-    return tempMsg;
 }
