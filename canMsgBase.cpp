@@ -31,5 +31,8 @@ bool canMsgBase::stop()
 
 std::ostream& operator<< (std::ostream& os, const canMsgBase& obj) {
     os << "ID:  " <<std::hex<<obj.msg.ID;
+    os<<"-- PayLoad--"<<std::endl;
+    for(uint a=0;a<obj.msg.LEN;++a)
+        os<<std::hex<<(int)obj.msg.DATA[a]<<std::endl;
     return os;
 }
