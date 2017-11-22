@@ -29,6 +29,9 @@ void canManager::initCAN()
 
 std::ostream& operator<< (std::ostream& os, const TPCANMsg& obj) {
     os << "ID:  " <<std::hex<<obj.ID;
+    os<<"-- PayLoad--"<<std::endl;
+    for(uint a=0;a<obj.LEN;++a)
+        os<<std::hex<<(int)obj.DATA[a]<<std::endl;
     return os;
 }
 

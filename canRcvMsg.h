@@ -10,7 +10,7 @@
 class canRcvMsg: public canMsgBase {
 
 public:
-    canRcvMsg(int miliSeconds,HANDLE handleInput,packet_container* link):canMsgBase(miliSeconds),linkToContainer(link){}
+    canRcvMsg(int miliSeconds,HANDLE handleInput,packet_container* link):canMsgBase(miliSeconds),m_handle(handleInput),linkToContainer(link){}
     virtual void start();
 
 private:

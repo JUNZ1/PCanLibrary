@@ -74,8 +74,9 @@ void test5()
     {
         canManager::instance()->openCan(0);
         canManager::instance()->registerMsg(0x152);
+        canManager::instance()->registerMsg(0x160);
         canManager::instance()->initCAN();
-        std::chrono::milliseconds ms(1000);
+        std::chrono::milliseconds ms(100);
         int say=0;
 
         while(say<30)
@@ -84,7 +85,8 @@ void test5()
             ++say;
             try
             {
-                std::cout<<"***Mesaj Geldi***\n"<<canManager::instance()->getMsgById(0x152);
+                std::cout<<"\n***Mesaj Geldi***\n"<<canManager::instance()->getMsgById(0x152);
+                std::cout<<"\n***Mesaj Geldi***\n"<<canManager::instance()->getMsgById(0x160);
             }
             catch (...)
             {

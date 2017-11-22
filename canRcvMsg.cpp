@@ -12,7 +12,7 @@ void canRcvMsg::start()
         {
             msgDelay();
             CAN_Read(m_handle, &msg);
-            std::cout<<"Push this-> "<<*this<<std::endl;
+            //std::cout<<"Push this-> "<<*this<<std::endl;
             std::lock_guard<std::mutex> myLock(myMutex);
             linkToContainer->storeMsg(msg);
         };

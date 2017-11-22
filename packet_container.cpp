@@ -8,7 +8,7 @@ void packet_container::storeMsg(TPCANMsg msg)
 {
     if(registeredMsg.find(msg.ID)!=registeredMsg.end())
     {
-        std::cout<<"---Msg is Stored---"<<std::endl;
+        //std::cout<<"---Msg is Stored---"<<std::endl;
         storedMessages[msg.ID].push_back(msg);
     }
 
