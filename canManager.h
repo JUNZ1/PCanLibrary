@@ -11,7 +11,7 @@
 #include "pcan.h"
 #include "canRcvMsg.h"
 #include "packet_container.h"
-class canManager:packet_container {
+class canManager: public packet_container {
 private:
     static canManager* s_instance;
     canManager(){std::cout<<"Can Manager is Created"<<std::endl;};

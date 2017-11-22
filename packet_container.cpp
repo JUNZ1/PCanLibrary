@@ -3,11 +3,15 @@
 //
 
 #include "packet_container.h"
-
+#include <iostream>
 void packet_container::storeMsg(TPCANMsg msg)
 {
     if(registeredMsg.find(msg.ID)!=registeredMsg.end())
+    {
+        std::cout<<"---Msg is Stored---"<<std::endl;
         storedMessages[msg.ID].push_back(msg);
+    }
+
 }
 
 TPCANMsg packet_container::getMsgById(DWORD seekThis)
