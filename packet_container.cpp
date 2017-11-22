@@ -4,6 +4,10 @@
 
 #include "packet_container.h"
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
 void packet_container::storeMsg(TPCANMsg msg)
 {
     if(registeredMsg.find(msg.ID)!=registeredMsg.end())
@@ -27,11 +31,21 @@ TPCANMsg packet_container::getMsgById(DWORD seekThis)
             return tempMsg;
         }
         else
-            throw std::logic_error ("No New Message !!!");
+        {
+            std::stringstream stream;
+            stream << std::hex << seekThis;
+            std::string result( stream.str() );
+
+            throw std::logic_error ("No New Message !!! ->  0x"+result);
+        }
+
     }
     else
     {
-        throw std::logic_error ("This ID is not Registered!!!");
+        std::stringstream stream;
+        stream << std::hex << seekThis;
+        std::string result( stream.str() );
+        throw std::logic_error ("This ID is not Registered!!! -> 0x"+result);
     }
 
 }
