@@ -34,7 +34,6 @@ public:
     const int buffPacketLimit=300;
     void writeAllIncomingBuff();
     std::vector<TPCANMsg> incomingBuffer;
-    std::mutex myLocker;
 };
 
 std::ostream& operator<<(std::ostream&, const TPCANMsg&);
