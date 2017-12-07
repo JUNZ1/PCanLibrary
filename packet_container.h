@@ -16,12 +16,12 @@
 class packet_container
 {
     public:
-        void registerMsg(DWORD input){registeredMsg.insert(input);}
+        void registerINMsg(DWORD input){registeredINMsgSet.insert(input);}
         void storeMsg(TPCANMsg msg);
         TPCANMsg getMsgById(DWORD);
     private:
         std::map<DWORD,std::deque<TPCANMsg>> storedMessages;
-        std::set<DWORD> registeredMsg;
+        std::set<DWORD> registeredINMsgSet;
 };
 
 
