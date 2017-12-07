@@ -11,12 +11,20 @@
 #include <future>
 #include <mutex>
 
+
+
+
+
 class canMsgBase {
 public:
     canMsgBase(int);
     virtual void start();
     bool stop();
     friend std::ostream& operator<<(std::ostream&, const canMsgBase&);
+
+    static bool readyFlag;
+    static std::mutex swithMutex;
+    static std::condition_variable myConditionVariable;
 
 protected: //ileride protected yapilacak inheritten sonra
     DWORD* m_handlerAddres= nullptr;
@@ -26,9 +34,7 @@ protected: //ileride protected yapilacak inheritten sonra
     bool stopped;
     std::future<bool>* stopResult;
 
-    bool readyFlag;
-    std::mutex swithMutex;
-    std::condition_variable myConditionVariable;
+
 
 private:
     std::chrono::milliseconds* ms;

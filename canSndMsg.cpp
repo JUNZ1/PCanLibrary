@@ -11,8 +11,24 @@ void canSndMsg::start()
     {
         while (stopper)
         {
+            std::unique_lock<std::mutex> myLock(canMsgBase::swithMutex);
+            canMsgBase::myConditionVariable.wait(myLock,[](){return !(canMsgBase::readyFlag);});
+
             msgDelay();
-            //will be implemented here
+            //std::cout<<"Sender Calisitirildi"<<std::endl;
+            try
+            {
+                TPCANMsg temporary=linkToContainer->getNextMsgToSend();
+                CAN_Write(m_handle,&temporary);
+                std::cout<<"Message is send"<<std::endl;
+            }
+            catch(std::exception& myExcept)
+            {
+                //std::cout<<myExcept.what()<<std::endl;
+            }
+
+            canMsgBase::readyFlag=!canMsgBase::readyFlag;
+            canMsgBase::myConditionVariable.notify_all();
         };
         return true;
     };

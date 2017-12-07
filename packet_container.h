@@ -19,9 +19,13 @@ class packet_container
     public:
         void registerINMsg(DWORD input){registeredINMsgSet.insert(input);}
         void registerOutMsg(DWORD input){registeredOutMsgSet.insert(input);}
-        void pumpOutMsg(TPCANMsg);
         void storeMsg(TPCANMsg msg);
         TPCANMsg getMsgById(DWORD);
+
+        void pumpOutMsg(TPCANMsg);
+        TPCANMsg getNextMsgToSend(void);
+
+
     private:
         std::map<DWORD,std::deque<TPCANMsg>> storedInMessages;
         std::deque<TPCANMsg> storedOutMessages;

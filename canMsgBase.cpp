@@ -5,6 +5,15 @@
 #include <thread>
 #include "canMsgBase.h"
 #include <future>
+
+
+
+
+bool canMsgBase::readyFlag;
+std::mutex canMsgBase::swithMutex;
+std::condition_variable canMsgBase::myConditionVariable;
+
+
 canMsgBase::canMsgBase(int milisec): stopper(true),stopped(false)
 {
     ms=new std::chrono::milliseconds(milisec);

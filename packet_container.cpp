@@ -65,3 +65,21 @@ void packet_container::pumpOutMsg(TPCANMsg messageToBeSend)
          throw std::logic_error ("UnRegistered Message is Tried to Send!!:  0x"+result);
      }
 }
+
+
+TPCANMsg packet_container::getNextMsgToSend()
+{
+    TPCANMsg temporarayMsg;
+    if(storedOutMessages.size()!=0)
+    {
+        temporarayMsg=storedOutMessages.at(0);
+
+        storedOutMessages.pop_front();
+
+    }
+    else
+    {
+        throw std::runtime_error ("Sending Message Array is empty!!");
+    }
+    return temporarayMsg;
+}

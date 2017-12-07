@@ -13,15 +13,16 @@ canManager* canManager::instance()
     {
         s_instance = new canManager;
     }
-
     return s_instance;
 }
 
 void canManager::initCAN()
 {
     registerReceiver();
+    registerSender();
     m_status=CAN_Init(m_handle, CAN_BAUD_250K, CAN_INIT_TYPE_EX);
     writeStatus();
+    allSender->start();
     allReceiver->start();
 
 }
