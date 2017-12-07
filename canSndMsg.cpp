@@ -20,7 +20,7 @@ void canSndMsg::start()
             {
                 TPCANMsg temporary=linkToContainer->getNextMsgToSend();
                 CAN_Write(m_handle,&temporary);
-                std::cout<<"Message is send"<<std::endl;
+                //std::cout<<"Message is send"<<std::endl;
             }
             catch(std::exception& myExcept)
             {
