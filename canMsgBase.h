@@ -11,7 +11,6 @@
 #include <future>
 #include <mutex>
 
-static std::mutex myMutex;
 class canMsgBase {
 public:
     canMsgBase(int);
@@ -26,6 +25,11 @@ protected: //ileride protected yapilacak inheritten sonra
     bool stopper;
     bool stopped;
     std::future<bool>* stopResult;
+
+    bool readyFlag;
+    std::mutex swithMutex;
+    std::condition_variable myConditionVariable;
+
 private:
     std::chrono::milliseconds* ms;
     DWORD m_msgAdress;

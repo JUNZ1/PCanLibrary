@@ -1,9 +1,10 @@
 //
-// Created by baran on 10.11.2017.
+// Created by baran on 07.12.2017.
 //
 
-#include "canRcvMsg.h"
-void canRcvMsg::start()
+#include "canSndMsg.h"
+
+void canSndMsg::start()
 {
     stopper=true;
     auto runner=[this]()
@@ -11,9 +12,7 @@ void canRcvMsg::start()
         while (stopper)
         {
             msgDelay();
-            CAN_Read(m_handle, &msg);
-            //std::cout<<"Push this-> "<<*this<<std::endl;
-            linkToContainer->storeMsg(msg);
+            //will be implemented here
         };
         return true;
     };
