@@ -12,16 +12,21 @@
 #include <algorithm>
 #include <mutex>
 #include "pcan.h"
+#include "deque"
 
 class packet_container
 {
     public:
         void registerINMsg(DWORD input){registeredINMsgSet.insert(input);}
+        void registerOutMsg(DWORD input){registeredOutMsgSet.insert(input);}
+        void pumpOutMsg(TPCANMsg);
         void storeMsg(TPCANMsg msg);
         TPCANMsg getMsgById(DWORD);
     private:
-        std::map<DWORD,std::deque<TPCANMsg>> storedMessages;
+        std::map<DWORD,std::deque<TPCANMsg>> storedInMessages;
+        std::deque<TPCANMsg> storedOutMessages;
         std::set<DWORD> registeredINMsgSet;
+        std::set<DWORD> registeredOutMsgSet;
 };
 
 

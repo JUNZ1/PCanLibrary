@@ -13,7 +13,7 @@ void packet_container::storeMsg(TPCANMsg msg)
     if(registeredINMsgSet.find(msg.ID)!=registeredINMsgSet.end())
     {
         //std::cout<<"---Msg is Stored---"<<std::endl;
-        storedMessages[msg.ID].push_back(msg);
+        storedInMessages[msg.ID].push_back(msg);
     }
 
 }
@@ -24,10 +24,10 @@ TPCANMsg packet_container::getMsgById(DWORD seekThis)
 
     if(registeredINMsgSet.find(seekThis)!=registeredINMsgSet.end())
     {
-        if(storedMessages[seekThis].size()!=0)
+        if(storedInMessages[seekThis].size()!=0)
         {
-            tempMsg=storedMessages[seekThis].at(0);
-            storedMessages[seekThis].pop_front();
+            tempMsg=storedInMessages[seekThis].at(0);
+            storedInMessages[seekThis].pop_front();
             return tempMsg;
         }
         else
@@ -48,4 +48,20 @@ TPCANMsg packet_container::getMsgById(DWORD seekThis)
         throw std::logic_error ("This ID is not Registered!!! -> 0x"+result);
     }
 
+}
+
+void packet_container::pumpOutMsg(TPCANMsg messageToBeSend)
+{
+     if(registeredOutMsgSet.find(messageToBeSend.ID)!=registeredOutMsgSet.end())
+     {
+         storedOutMessages.push_back(messageToBeSend);
+     }
+     else
+     {
+         std::stringstream stream;
+         stream << std::hex << messageToBeSend.ID;
+         std::string result( stream.str() );
+
+         throw std::logic_error ("UnRegistered Message is Tried to Send!!:  0x"+result);
+     }
 }
