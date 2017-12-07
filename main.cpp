@@ -44,18 +44,20 @@ void test5()
         canManager::instance()->registerINMsg(0x152);
         canManager::instance()->registerINMsg(0x160);
         canManager::instance()->initCAN();
-        std::chrono::milliseconds ms(10);
+        std::chrono::milliseconds ms(5);
         int say=0;
         std::thread t1(test_send123);
         t1.detach();
         while(true)
         {
-          std::this_thread::sleep_until(std::chrono::steady_clock::now()+ms);
+          //std::this_thread::sleep_until(std::chrono::steady_clock::now()+ms);
             ++say;
+
             try
             {
                 std::cout<<"\n***Mesaj Geldi***\n"<<canManager::instance()->getMsgById(0x152);
                 std::cout<<"\n***Mesaj Geldi***\n"<<canManager::instance()->getMsgById(0x160);
+                std::cout<<std::dec<<say<<std::endl;
             }
             catch (std::logic_error printThis)
             {

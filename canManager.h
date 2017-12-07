@@ -23,8 +23,8 @@ private:
     void writeStatus();
     canRcvMsg* allReceiver;
     canSndMsg* allSender;
-    void registerReceiver(){allReceiver=new canRcvMsg(10,m_handle,this);}
-    void registerSender(){allSender=new canSndMsg(10,m_handle,this);}
+    void registerReceiver(){allReceiver=new canRcvMsg(5,m_handle,this);}
+    void registerSender(){allSender=new canSndMsg(5,m_handle,this);}
 
 
 public:

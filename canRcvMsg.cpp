@@ -13,7 +13,7 @@ void canRcvMsg::start()
             std::unique_lock<std::mutex> myLock(canMsgBase::swithMutex);
             canMsgBase::myConditionVariable.wait(myLock,[](){return (canMsgBase::readyFlag);});
 
-            msgDelay();
+            //msgDelay();
             //std::cout<<"Receiver Calisitirildi"<<std::endl;
             std::cout.flush();
             CAN_Read(m_handle, &msg);
