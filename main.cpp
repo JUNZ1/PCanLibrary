@@ -24,20 +24,12 @@ void test_send123()
            {
                std::cout<<myExcept.what()<<std::endl;
            }
-
        }
 }
 
 void test5()
 {
 
-    TPCANMsg msg;
-       msg.ID = 0x123;
-       msg.MSGTYPE= MSGTYPE_EXTENDED;
-       msg.LEN = 3;
-       msg.DATA[0] = 0x01;
-       msg.DATA[1] = 0x02;
-       msg.DATA[2] = 0x03;
     try
     {
         canManager::instance()->openCan(0);
