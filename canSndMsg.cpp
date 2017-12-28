@@ -14,7 +14,7 @@ void canSndMsg::start()
             std::unique_lock<std::mutex> myLock(canMsgBase::swithMutex);
             canMsgBase::myConditionVariable.wait(myLock,[](){return !(canMsgBase::readyFlag);});
 
-            msgDelay();
+            //msgDelay();
             //std::cout<<"Sender Calisitirildi"<<std::endl;
             try
             {
