@@ -11,13 +11,13 @@
 #include "pcan.h"
 #include "canRcvMsg.h"
 #include "canSndMsg.h"
-
+#include "messageStatus.h"
 #include "packet_container.h"
 class canManager: public packet_container {
 private:
     static canManager* s_instance;
     canManager(){std::cout<<"Can Manager is Created"<<std::endl;}
-    ~canManager(){delete s_instance;delete allReceiver;}
+    virtual ~canManager(){delete s_instance;delete allReceiver;}
     HANDLE m_handle;
     DWORD m_status;
     void writeStatus();
@@ -33,7 +33,7 @@ public:
     static canManager* instance();
     void openCan(int number){m_handle=CAN_Open(HW_USB, number);if(m_handle==0) throw std::out_of_range ("can index is= out_of_range");}
     void initCAN();
-    void closeCan(){CAN_Close(m_handle);writeStatus();allReceiver->stop();}
+    void closeCan(){myCAN::tolls4All::writeStatus(CAN_Close(m_handle));allReceiver->stop();}
     HANDLE getHandle(){return m_handle;}
     const int buffPacketLimit=300;
     void writeAllIncomingBuff();

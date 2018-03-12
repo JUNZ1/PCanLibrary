@@ -12,7 +12,7 @@ class canSndMsg :public canMsgBase
 public:
     canSndMsg(int milliSeconds,HANDLE handleInput,packet_container* link):canMsgBase(milliSeconds),m_handle(handleInput),linkToContainer(link){}
     virtual void start();
-
+    virtual ~canSndMsg(){}
 private:
     HANDLE m_handle;
     packet_container* linkToContainer;

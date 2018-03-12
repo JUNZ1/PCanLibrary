@@ -1,15 +1,10 @@
-//
-// Created by baran on 10.11.2017.
-//
+#ifndef STATUSHANDLER_H
+#define STATUSHANDLER_H
 
-#ifndef CANMANAGER_MESSAGESTATUS_H
-#define CANMANAGER_MESSAGESTATUS_H
-
-namespace myCAN {
-class tolls4All
+class someTools
 {
 public:
-    static void writeStatus(DWORD m_status)
+    void handleStatus(DWORD m_status)
     {
         switch (m_status)
         {
@@ -97,5 +92,4 @@ public:
         }
     }
 };
-}
-#endif //CANMANAGER_MESSAGESTATUS_H
+#endif //STATUSHANDLER_H
